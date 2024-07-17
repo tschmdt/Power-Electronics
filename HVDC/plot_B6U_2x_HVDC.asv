@@ -4,7 +4,6 @@
     % V1 & V2: Gleichgerichtete Spannungen an den beiden B6 Schaltungen
     
 sim('B6U_2x_HVDC')
-fontname = 'Helvetica';
 
 t = out.Vout.time;
 Vout = out.Vout.Data;
@@ -33,7 +32,7 @@ title('Stromverlauf');
 set(gca, 'FontSize', 14);
 xticks([0, 0.01, 0.02]);
 
-sgtitle('Netzgeführter 12-Puls Brückengleichrichter', 'FontSize', 17);
+sgtitle('Netzgeführter 12-Puls Brückengleichrichter');
 
 figure;
 
@@ -41,15 +40,16 @@ Vab = out.Vab.Data/sqrt(2); %RMS
 Vbc = out.Vbc.Data/sqrt(2);
 Vca = out.Vca.Data/sqrt(2);
 
-plot(t,Vout,'LineWidth', 2.5);
+subplot(2,1,1);
+plot(t,Vout,'LineWidth', );
 hold on;
-plot(t,Vab,'--','LineWidth', 1);
-plot(t,Vbc,'--','LineWidth', 1);
-plot(t,Vca,'--','LineWidth', 1);
+plot(t,Vab, 'LineWidth', 2);
+plot(t,Vbc, 'LineWidth', 2);
+plot(t,Vca, 'LineWidth', 2);
 
 legend('Vout', 'Vab', 'Vbc', 'Vca', 'FontSize', 14,'Location', 'east');
 xlabel('Time (s)');
 ylabel('Amplitude U (V)');
-title('Spannungsverläufe');
+title('Spannungsverlauf');
 set(gca, 'FontSize', 14);
 xticks([0, 0.01, 0.02]);
