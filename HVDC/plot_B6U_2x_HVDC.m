@@ -26,7 +26,7 @@ xticks([0, 0.01, 0.02]);
 
 subplot(2,1,2);
 plot(t,Iout,'LineWidth', 2)
-legend('Iout', 'FontSize', 14,'Location', 'east');
+legend('Iout', 'FontSize', 14,'Location', 'southeast');
 xlabel('Time (s)');
 ylabel('Amplitude I (A)');
 title('Stromverlauf');

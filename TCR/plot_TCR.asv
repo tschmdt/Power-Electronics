@@ -1,21 +1,20 @@
 %% 1) Change a to change firing angle
     % run simulation then run second section
 
-a = 110;
+a = 110
 sim('TCR_Simulation')
 %% 2) Plot
 
-fontname = 'Helvetica';
+t = out.Load_Voltage.time
+U_a = out.Load_Voltage.Data
+I_a = out.I_TCR.Data
 
-t = out.Load_Voltage.time;
-U_a = out.Load_Voltage.Data;
-I_a = out.I_TCR.Data;
-
-plot(t, U_a, t, I_a, 'LineWidth', 2)
+plot(t, U_a, t, I_a, 'LineWidth',2)
 
 hold on;
 
-% Add labels
+% Add legend and labels
+legend('Load Voltage U', 'TCR Current I','', 'FontSize',14);
 xlabel('Time (s)');
 ylabel('Amplitude U,I');
 title('I_ (TCR) -Abhängigkeit vom Zündwinkel a');
@@ -27,9 +26,8 @@ set(gca,'xtick',[])
 set(gca,'ytick',[])
 set(gca, 'FontSize', 14);
 
-x = ((a+360)/360) * (1/50);
-xline(x,'--', ['a = ', num2str(a),'°'],'LabelVerticalAlignment', 'top' ,'LineWidth', 1.5, 'FontSize', 14);
-legend('Load Voltage U', 'TCR Current I', 'FontSize', 14);
+x = ((a+360)/360) * (1/50)
+xline(x,'--', ['a = ', num2str(a),'°'],'"','top','LineWidth', 1.5, 'FontSize', 14);
 
 hold off;
 
