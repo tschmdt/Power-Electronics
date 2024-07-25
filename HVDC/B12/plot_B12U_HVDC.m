@@ -2,8 +2,9 @@
     % Vout: Am Lastwiderstand abfallende Spannung (Addition der beiden B6
     % Schaltungen)
     % V1 & V2: Gleichgerichtete Spannungen an den beiden B6 Schaltungen
-    
-sim('B6U_2x_HVDC')
+
+open_system('B12U_HVDC')    
+sim('B12U_HVDC')
 fontname = 'Helvetica';
 
 t = out.Vout.time;

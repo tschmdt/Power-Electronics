@@ -1,6 +1,7 @@
 %% 1) Change a to change firing angle
     % run simulation then run second section
 
+open_system('TCR_Simulation')
 a = 110;
 sim('TCR_Simulation')
 %% 2) Plot
