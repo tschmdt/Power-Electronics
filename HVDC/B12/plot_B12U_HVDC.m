@@ -5,6 +5,7 @@
 
 open_system('B12U_HVDC')    
 sim('B12U_HVDC')
+%%
 fontname = 'Helvetica';
 
 t = out.Vout.time;

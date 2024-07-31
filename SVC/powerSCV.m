@@ -1,0 +1,2 @@
+openExample('power_svc')
+
