@@ -3,6 +3,7 @@
     % Schaltungen)
     % V1 & V2: Gleichgerichtete Spannungen an den beiden B6 Schaltungen
 
+%addpath('C:\Users\E370_\Documents\Arbeit\Git\Power-Electronics\HVDC\B12');
 open_system('HVDC_B12U')    
 sim('HVDC_B12U')
 %%

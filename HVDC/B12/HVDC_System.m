@@ -1,1 +1,1 @@
-openExample('simscapeelectricalsps/HVDCThyristorBasedExample
+openExample('simscapeelectricalsps/HVDCThyristorBasedExample')
