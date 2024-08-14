@@ -3,8 +3,8 @@
     % Schaltungen)
     % V1 & V2: Gleichgerichtete Spannungen an den beiden B6 Schaltungen
 
-open_system('B12U_HVDC')    
-sim('B12U_HVDC')
+open_system('HVDC_B12U')    
+sim('HVDC_B12U')
 %%
 fontname = 'Helvetica';
 
