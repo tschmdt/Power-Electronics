@@ -14,12 +14,10 @@ alpha = scopeData.signals(4).values;
 TCS_number = scopeData.signals(5).values;
 
 numSignals = length(scopeData.signals);
-titles = {'Va,Ia ', 'Q', 'V', 'alpha', 'TCS number'};
-legends = {{'Va', 'Ia '}, 'Q (Mvar)', {'Vref (pu)', 'Vmeas (pu)'}, 'alpha (deg)', 'TCS number'};
+titles = {'Va Ia (pu)', 'Q', 'V', 'alpha', 'TCS number'};
+legends = {{'Va (pu)', 'Ia (pu)'}, 'Q (Mvar)', {'Vref (pu)', 'Vmeas (pu)'}, 'alpha (deg)', 'TCS number'};
 
 %% Plot Version 1: 4 Subplots
-
-yLabels = {'pu','Mvar', 'pu','','test'};
 
 figure;
 
@@ -33,13 +31,10 @@ for i = 1:numSignals
         hold on
         plot(time, scopeData.signals(i).values(:,1), 'LineWidth', 1.5);
         legend(legends{i}, 'Location', 'best', 'FontSize', 10);
-        ylabel('pu')
     else
         plot(time, scopeData.signals(i).values, 'LineWidth', 1.5); 
     end
-
     title(titles{i}, 'FontSize', 16, 'FontWeight', 'bold');
-
     if i == numSignals
         xlabel('Time (s)', 'FontSize', 14);
     else
@@ -47,10 +42,6 @@ for i = 1:numSignals
     end
     if i == 1
         legend(legends{i}, 'Location', 'south', 'FontSize', 10);
-        ylabel('pu')
-    end
-    if i == 2
-        ylabel('Mvar')
     end
     set(gca, 'FontSize', 10);
     grid off; 
@@ -60,7 +51,6 @@ sgtitle('SVC Verhalten (dynamische Regelung)', 'FontSize', 17);
 
 indicesToPlot = [2, 3, 5];
 numPlots = length(indicesToPlot);
-yLabels = {'Mvar', 'pu',''};
 
 figure;
 
@@ -81,7 +71,7 @@ for plotIndex = 1:numPlots
    
     title(titles{i}, 'FontSize', 16, 'FontWeight', 'bold');
 
-    ylabel(yLabels{plotIndex}, 'FontSize', 14)
+    ylabel(['Signal ' num2str(i)], 'FontSize', 14);
     
     if plotIndex == numPlots
         xlabel('Time (s)', 'FontSize', 14);
