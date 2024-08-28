@@ -15,7 +15,7 @@ TCS_number = scopeData.signals(5).values;
 
 numSignals = length(scopeData.signals);
 titles = {'Va,Ia ', 'Q', 'V', 'alpha', 'TCS number'};
-legends = {{'Va', 'Ia '}, 'Q (Mvar)', {'Vref (pu)', 'Vmeas (pu)'}, 'alpha (deg)', 'TCS number'};
+legends = {{'Va', 'Ia '}, 'Q (Mvar)', {'Vref ', 'Vmeas '}, 'alpha (deg)', 'TCS number'};
 
 %% Plot Version 1: 4 Subplots
 
@@ -29,13 +29,13 @@ for i = 1:numSignals
     end
     subplot(numSignals-1, 1, i - (i > 4)); 
     if i == 3 
-        plot(time, scopeData.signals(i).values(:,2), 'LineWidth', 1.2, 'Color', [.7 .7 .7], 'LineStyle','--');
+        plot(time, scopeData.signals(i).values(:,2), 'LineWidth', 1.5, 'Color', [.7 .7 .7], 'LineStyle','--');
         hold on
-        plot(time, scopeData.signals(i).values(:,1), 'LineWidth', 1.5);
+        plot(time, scopeData.signals(i).values(:,1), 'LineWidth', 2);
         legend(legends{i}, 'Location', 'best', 'FontSize', 10);
         ylabel('pu')
     else
-        plot(time, scopeData.signals(i).values, 'LineWidth', 1.5); 
+        plot(time, scopeData.signals(i).values, 'LineWidth', 2); 
     end
 
     title(titles{i}, 'FontSize', 16, 'FontWeight', 'bold');
