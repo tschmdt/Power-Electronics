@@ -2,9 +2,8 @@
     % run simulation then run second section
 
 open_system('TCR_Simulation')
-a = 140;
-out= sim('TCR_Simulation')
-
+a = 90;
+sim('TCR_Simulation')
 %% 2) Plot
 
 fontname = 'Helvetica';
@@ -68,11 +67,9 @@ I_a = out.I_TCR.Data;
 firing_angle = [90, 125, 165];
 
 figure;
+subplot(length(firing_angle, 1, i))
 
 for i = firing_angle
-    out= sim('TCR_Simulation')
-    subplot(length(i, 1, i)
-
     plot(t, U_a, t, I_a, 'LineWidth', 2)
    
 
