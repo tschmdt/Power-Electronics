@@ -1,5 +1,4 @@
-
-
+%Simulation of a SVC Facts-Element in a three phase system (1 TCR + 3 TSCs)
 
 open_system('SVC_Simulation_V2');
 sim('SVC_Simulation_V2');

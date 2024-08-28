@@ -2,7 +2,7 @@
     % run simulation then run second section
 
 open_system('TCR_Simulation')
-a = 95;
+a = 90;
 sim('TCR_Simulation')
 %% 2) Plot
 
