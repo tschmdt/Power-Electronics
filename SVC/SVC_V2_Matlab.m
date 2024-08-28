@@ -13,7 +13,7 @@ VmeasVref = scopeData.signals(3).values;
 alpha = scopeData.signals(4).values;
 TCS_number = scopeData.signals(5).values;
 
-numSignals = length(signals);
+numSignals = length(scopeData.signals);
 titles = {'Va Ia (pu)', 'Q', 'Vmeas Vref', 'alpha', 'TCS number'};
 legends = {{'Va (pu)', 'Ia (pu)'}, 'Q (Mvar)', {'Vmeas (pu)', 'Vref (pu)'}, 'alpha (deg)', 'TCS number'};
 
@@ -23,7 +23,7 @@ figure;
 
 for i = 1:numSignals
     subplot(numSignals, 1, i); 
-    plot(time, signals(i).values, 'LineWidth', 1.3); 
+    plot(time, scopeData.signals(i).values, 'LineWidth', 1.3); 
     title(titles{i}, 'FontSize', 14, 'FontWeight', 'bold');
     if i == numSignals
         xlabel('Time (s)', 'FontSize', 12);
