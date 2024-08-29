@@ -3,8 +3,9 @@
     % Schaltungen)
     % V1 & V2: Gleichgerichtete Spannungen an den beiden B6 Schaltungen
 
-open_system('B12U_HVDC')    
-sim('B12U_HVDC')
+addpath('C:\Users\E370_\Documents\Arbeit\Git\Power-Electronics\HVDC\B12');
+open_system('HVDC_B12U')    
+out = sim('HVDC_B12U')
 %%
 fontname = 'Helvetica';
 
@@ -19,7 +20,7 @@ figure;
 subplot(2,1,1);
 
 plot(t,Vout, t,V1, t,V2, 'LineWidth', 2)
-legend('Vout', 'V1', 'V2', 'FontSize', 14,'Location', 'east');
+legend('V_{out}', 'V_{1}', 'V_{2}', 'FontSize', 14,'Location', 'east');
 xlabel('Time (s)');
 ylabel('Amplitude U (V)');
 title('Spannungsverlauf');
@@ -49,7 +50,7 @@ plot(t,Vab,'--','LineWidth', 1);
 plot(t,Vbc,'--','LineWidth', 1);
 plot(t,Vca,'--','LineWidth', 1);
 
-legend('Vout', 'Vab', 'Vbc', 'Vca', 'FontSize', 14,'Location', 'east');
+legend('V_{out}', 'V_{ab}', 'V_{bc}', 'V_{ca}', 'FontSize', 14,'Location', 'east');
 xlabel('Time (s)');
 ylabel('Amplitude U (V)');
 title('Spannungsverläufe');
