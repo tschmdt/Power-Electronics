@@ -17,7 +17,7 @@ numSignals = length(scopeData.signals);
 titles = {'Va,Ia ', 'Q', 'V', 'alpha', 'TCS number'};
 legends = {{'Va', 'Ia '}, 'Q (Mvar)', {'Vref ', 'Vmeas '}, 'alpha (deg)', 'TCS number'};
 
-%% Plot Version 1: 4 Subplots
+% Plot Version 1: 4 Subplots
 
 yLabels = {'pu','Mvar', 'pu','','test'};
 

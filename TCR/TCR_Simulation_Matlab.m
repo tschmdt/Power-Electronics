@@ -1,10 +1,10 @@
 %% Plot with 4 subplots
-    % Change a to change firing angle
+    % Change alpha to change firing angle
     % Best if plot @ 90°, 125°, 165°
     
 open_system('TCR_Simulation')
 
-a = 165;
+a = 125;
 out= sim('TCR_Simulation')
 
 fontname = 'Helvetica';
@@ -69,7 +69,7 @@ open_system('TCR_Simulation')
 
 fontname = 'Helvetica';
 
-alpha = [90, 125, 155];
+alpha = [90, 125, 145];
 
 titles = {'\alpha = 90°', '\alpha > 90°', '\alpha ~ 180°'};
 
