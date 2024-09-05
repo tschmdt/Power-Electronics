@@ -12,22 +12,22 @@ time = out;
 fontname = 'Helvetica';
 
 figure;
-plot(P, 'LineWidth', 2.5);
-xlabel('Zeit');
+plot(P, 'LineWidth', 2);
+xlabel('Zeit (s)');
 ylabel('MW');
 title('Power', 'FontSize', 12);
 set(gca, 'FontSize', 12);
 
 figure;
-plot(Ztcsc,'LineWidth', 2.5);
-xlabel('Zeit');
+plot(Ztcsc,'LineWidth', 2);
+xlabel('Zeit (s)');
 ylabel('Ohm');
 title('Z_{TCSC}', 'FontSize', 12,'Interpreter', 'tex');
 set(gca, 'FontSize', 12);
 
 figure;
-plot(alpha,'LineWidth', 2.5)
-xlabel('Zeit');
+plot(alpha,'LineWidth', 2)
+xlabel('Zeit (s)');
 ylabel('deg');
 title('\alpha', 'FontSize', 14,'Interpreter', 'tex');
 set(gca, 'FontSize', 12);
