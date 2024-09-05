@@ -29,12 +29,13 @@ xticks([0, 0.01, 0.02]);
 
 subplot(2,1,2);
 plot(t,Iout,'LineWidth', 2)
-legend('Iout', 'FontSize', 14,'Location', 'southeast');
+legend('I_{out}', 'FontSize', 14,'Location', 'southeast');
 xlabel('Zeit (s)');
 ylabel('Amplitude I (A)');
 title('Stromverlauf');
 set(gca, 'FontSize', 14);
 xticks([0, 0.01, 0.02]);
+%% 
 
 sgtitle('Netzgeführter 12-Puls Brückengleichrichter', 'FontSize', 17);
 
