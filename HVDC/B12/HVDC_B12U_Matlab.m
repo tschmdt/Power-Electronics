@@ -21,7 +21,7 @@ subplot(2,1,1);
 
 plot(t,Vout, t,V1, t,V2, 'LineWidth', 2)
 legend('V_{out}', 'V_{1}', 'V_{2}', 'FontSize', 14,'Location', 'east');
-xlabel('Time (s)');
+xlabel('Zeit (s)');
 ylabel('Amplitude U (V)');
 title('Spannungsverlauf');
 set(gca, 'FontSize', 14);
@@ -30,7 +30,7 @@ xticks([0, 0.01, 0.02]);
 subplot(2,1,2);
 plot(t,Iout,'LineWidth', 2)
 legend('Iout', 'FontSize', 14,'Location', 'southeast');
-xlabel('Time (s)');
+xlabel('Zeit (s)');
 ylabel('Amplitude I (A)');
 title('Stromverlauf');
 set(gca, 'FontSize', 14);
@@ -46,12 +46,12 @@ Vca = out.Vca.Data/sqrt(2);
 
 plot(t,Vout,'LineWidth', 2.5);
 hold on;
-plot(t,Vab,'--','LineWidth', 1);
-plot(t,Vbc,'--','LineWidth', 1);
-plot(t,Vca,'--','LineWidth', 1);
+plot(t,Vab,'--','LineWidth', 1.3);
+plot(t,Vbc,':','LineWidth', 1.3);
+plot(t,Vca,'-.','LineWidth', 1.3);
 
 legend('V_{out}', 'V_{ab}', 'V_{bc}', 'V_{ca}', 'FontSize', 14,'Location', 'east');
-xlabel('Time (s)');
+xlabel('Zeit (s)');
 ylabel('Amplitude U (V)');
 title('Spannungsverläufe');
 set(gca, 'FontSize', 14);
