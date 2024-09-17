@@ -67,7 +67,7 @@ set(gca, 'FontSize', 12, 'FontName', fontname);
 fontname = 'Helvetica';
 
 figure;
-plot(Icap,'LineWidth', 2.5)
+plot(I_cap,'LineWidth', 2.5)
 xlim([1.5 1.6]);
 xlabel('Zeit (s)');
 yticks([]);
@@ -83,6 +83,24 @@ yticks([]);
 ylabel('U (V)');
 title('Kondensatorspannung (einphasig)', 'FontSize', 14);
 set(gca, 'FontSize', 12);
+%% I_tcr, I_klemm, I_cap
+
+plot(Icap,'LineWidth', 2.5);
+xlim([1.5 1.6]);
+hold on;
+plot(I_klemm,'LineWidth', 2.5);
+xlim([1.5 1.6]);
+plot(I_tcr,'LineWidth', 2.5);
+xlabel('Zeit (s)');
+yticks([]);
+xticks([]);
+ylabel('I (A)');
+title('Stromverläufe TCSC (einphasig)', 'FontSize', 14);
+set(gca, 'FontSize', 12);
+legend({'I_{cap}', 'I_{klemm}', 'I_{tcr}'}, 'Location', 'best', 'FontSize', 12);
+
+
+
 
 %% U,I one figure
 fontname = 'Helvetica';
@@ -96,7 +114,7 @@ ylabel('U (V)');
 set(gca, 'FontSize', 12);
 xlim([1.5 1.6]);
 yyaxis right;
-plot(Icap, 'LineWidth', 2.5);
+plot(I_cap, 'LineWidth', 2.5);
 ylabel('I (A)');
 xlabel('Zeit (s)');
 
