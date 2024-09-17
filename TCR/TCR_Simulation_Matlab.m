@@ -11,7 +11,7 @@ fontname = 'Helvetica';
 
 t = out.Load_Voltage.time;
 U_a = out.Load_Voltage.Data;
-I_a = out.I_TCR.Data;
+I_a = out.I_TCR.Data*2;
 
 figure;
 plot(t, U_a, t, I_a, 'LineWidth', 2)
@@ -69,7 +69,7 @@ open_system('TCR_Simulation')
 
 fontname = 'Helvetica';
 
-alpha = [90, 125, 145];
+alpha = [90, 125, 155];
 
 titles = {'\alpha = 90°', '\alpha > 90°', '\alpha ~ 180°'};
 
@@ -80,7 +80,7 @@ for i = 1: length(alpha)
     out= sim('TCR_Simulation')
     t = out.Load_Voltage.time;
     U_a = out.Load_Voltage.Data;
-    I_a = out.I_TCR.Data;
+    I_a = out.I_TCR.Data*3.5; %scale I_a for better visualization
     x = ((a + 360) / 360) * (1 / 50);
     subplot(length(alpha), 1, i);
     %plot(t, U_a, t, I_a, 'LineWidth', 2)
@@ -95,11 +95,11 @@ for i = 1: length(alpha)
     set(gca,'ytick',[])
     set(gca, 'FontSize', 14);
     ylim(ax, [-320 320]);
-    xlabel('Time (s)', 'FontSize', 14);
+    xlim(ax, [0.007 0.08]);
+    xlabel('Zeit (s)', 'FontSize', 14);
     ylabel('Amplitude U, I', 'FontSize', 14);
     title(titles{i}, 'FontSize', 14, 'FontWeight', 'bold');
     box on;
-    
 
     Start = [0.01998, 190];
     End = [x, 190];
@@ -108,8 +108,11 @@ for i = 1: length(alpha)
     plot([0.019998 0.019998], [0 220],'--', 'LineWidth', 1, 'Color',[0.502 0.502 0.502]); %fix line
     plot([x x], [0 220], '--', 'LineWidth', 1, 'Color', [0.502 0.502 0.502]); % variable line
 
+    text(0.01998+0.001, 230, ['\alpha = ', num2str(a), '°'], 'FontSize', 12, 'FontWeight', 'bold', 'Color', [0.502 0.502 0.502]);
+
+
    
-    if i == 1
+    if i == 3
         legend([h1, h2], {'Load Voltage U', 'TCR Current I'}, 'Location', 'best', 'FontSize', 10);
     end
        

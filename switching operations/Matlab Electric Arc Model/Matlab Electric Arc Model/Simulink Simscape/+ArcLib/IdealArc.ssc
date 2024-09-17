@@ -1,0 +1,47 @@
+component IdealArc
+% Ideal Arc
+% MODEL OF AN ELECTRIC ARC FOR CIRCUIT
+% J. Andrea - 2015
+
+    nodes
+        p = foundation.electrical.electrical; % +:top
+        n = foundation.electrical.electrical; % -:bottom
+    end
+    
+    parameters
+        b = { 1.46, '1' }; % Material Coefficient B
+        Rc = { 2221, 'Ohm' }; % Corona Resistance Rc
+        TauV = { 0.0001, 's' }; % Arc time constant for V
+        TauI = { 0.00001, 's' }; % Arc time constant for I
+    end
+    
+    inputs
+        a = { 49, 'V' }; % PS:bottom
+    end
+    
+    variables
+        i = { 0.001, 'A'   }; % Current
+        v = { 0.001, 'V'   }; % Voltage 
+        it = { 0.0001, 'A'   }; % Polarization Current
+    end
+        
+    function setup
+        %Initial conditions
+        v=0;
+        i=0;
+        it=0;
+    end
+    
+    branches
+        i : p.i -> n.i; % Through variable i from node p to node n
+    end
+    
+    equations
+        
+        v == p.v-n.v; 
+        it == i + TauI*i.der;
+        v + TauV*v.der == a*Rc*(it)/(Rc*(it)*atan(b*(it))+a);
+        
+    end
+    
+end
