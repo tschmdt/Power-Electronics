@@ -158,10 +158,27 @@ yticks([]);
 set(gca, 'FontSize', 12);
 title(''); 
 title('Kondensatorstrom und -spannung (einphasig) im kapazitiven Betriebsbereich')
-%%
+%% Impedance as function of alpha
+    %change parameters in simulation:
+        % zref: Time[ 0  1  1.5   2.5 ]; Amplitude[1 0.945 1.03 1.06 ]*128
+        % bypass threshold 0.25 (within firing unit)
 
-fontname = 'Helvetica';
+timepoints = Ztcsc.Time;
+specific_timepoints = [0.1, 1.2, 1.75, 2.75];
+[~, indices] = ismember(specific_timepoints, timepoints);
 
-figure;
-subplot(3,1,1);
+for i = 1:length(indices)
+    Ztcsc_timevalues(i) = Ztcsc.Data(indices(i))
+    alpha_timevalues(i) = alpha.Data(indices(i))
+end
+
+figure('Position', [100, 100, 600, 600]);
+plot(alpha_timevalues, Ztcsc_timevalues, 'bo', 'MarkerSize', 8, 'MarkerFaceColor', 'b', 'LineWidth', 1, 'LineStyle','-', 'Color', 'black'); 
+title('Abhängigkeit der Impedanz vom (Zünd-) Winkel', 'FontSize', 16, 'FontWeight', 'bold');
+xlabel('$\alpha$', 'Interpreter', 'latex', 'FontSize', 16)
+ylabel('Z_{TCSC}(\alpha)', 'FontSize', 12 );
+%set(gca, 'FontSize', 12, 'FontName', fontname);
+set(gca, 'XTick', [70, 75, 80, 85, 90]);
+
+grid on;
 

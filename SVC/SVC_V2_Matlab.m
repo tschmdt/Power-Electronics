@@ -14,7 +14,7 @@ alpha = scopeData.signals(4).values;
 TCS_number = scopeData.signals(5).values;
 
 numSignals = length(scopeData.signals);
-titles = {'Va,Ia ', 'Q', 'V', 'alpha', 'TCS number'};
+titles = {'V_{a}, I_{a} ', 'Q', 'V', 'alpha', 'TSC number'};
 legends = {{'Va', 'Ia '}, 'Q (Mvar)', {'Vref ', 'Vmeas '}, 'alpha (deg)', 'TCS number'};
 
 % Plot Version 1: 4 Subplots

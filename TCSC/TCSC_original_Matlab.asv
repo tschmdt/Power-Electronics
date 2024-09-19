@@ -67,28 +67,30 @@ ylim([65 95]);
 %% Power, Z, alpha ONE PLOT
 fontname = 'Helvetica';
 
-figure;
+%figure;
+figure('Position', [100, 100, 750, 700]);
 
 yyaxis left
-plot(Ztcsc, 'LineWidth', 2, 'Color', [0.8500 0.3250 0.0980]);
+plot(Ztcsc.Time, Ztcsc.Data, 'LineWidth', 2); 
 ylabel('Ohm');
 set(gca, 'FontSize', 12);
-set(gca, 'XTick', []);
+%set(gca, 'XTick', []); 
+xlabel('Zeit (s)'); 
 
-title('Power', 'FontSize', 12);
-set(gca, 'FontSize', 12, 'FontName', fontname);
-set(gca, 'XTick', []);
-xlabel('')
+title('Wirkleistungsfluss-Änderung durch Impedanz-Regelung', 'FontSize', 16, 'FontWeight', 'bold');
 
-plot(Ztcsc, 'LineWidth', 2, 'Color', [0.8500 0.3250 0.0980]);
-ylabel('Ohm');
-title('Z_{TCSC}', 'FontSize', 12, 'Interpreter', 'tex');
+yyaxis right
+plot(P.Time, P.Data, 'LineWidth', 2, 'LineStyle','-.'); 
+ylabel('MW');  
 set(gca, 'FontSize', 12, 'FontName', fontname);
-set(gca, 'XTick', []);
-xlabel('');
-x = [0.35 0.27];  % normalized
-y = [0.435 0.45];
-annotation('textarrow',x,y, 'String', ' start regulation to Z_{ref}= 128 Ohm', LineWidth= 1.1, FontSize=11);
+set(gca, 'YTick', [0, 200, 400, 600, 800, 1000]);
+
+
+legend('Z_{TCSC}','P')
+
+x = [0.35 0.27]; 
+y = [0.25 0.3];
+annotation('textarrow', x, y, 'String', ' start regulation to Z_{ref} = 128 \Omega', 'LineWidth', 1.1, 'FontSize', 12);
 
 %% U,I 
     % capacitor voltage and current at steady state operation in the capacitive
@@ -156,10 +158,27 @@ yticks([]);
 set(gca, 'FontSize', 12);
 title(''); 
 title('Kondensatorstrom und -spannung (einphasig) im kapazitiven Betriebsbereich')
-%%
+%% Impedance as function of alpha
+    %change parameters in simulation:
+        % zref: Time[ 0  1  1.5   2.5 ]; Amplitude[1 0.945 1.03 1.06 ]*128
+        % bypass threshold 0.25 (within firing unit)
 
-fontname = 'Helvetica';
+timepoints = Ztcsc.Time;
+specific_timepoints = [0.1, 1.2, 1.75, 2.75];
+[~, indices] = ismember(specific_timepoints, timepoints);
 
-figure;
-subplot(3,1,1);
+for i = 1:length(indices)
+    Ztcsc_timevalues(i) = Ztcsc.Data(indices(i))
+    alpha_timevalues(i) = alpha.Data(indices(i))
+end
+
+figure()
+plot(alpha_timevalues, Ztcsc_timevalues, 'bo', 'MarkerSize', 8, 'MarkerFaceColor', 'b', 'LineWidth', 1, 'LineStyle','-', 'Color', 'black'); 
+title('Abhängigkeit der Impedanz vom (Zünd-) Winkel', 'FontSize', 16, 'FontWeight', 'bold');
+xlabel('$\alpha$', 'Interpreter', 'latex', 'FontSize', 16)
+ylabel('Z_{TCSC}(\alpha)', 'FontSize', 12 );
+%set(gca, 'FontSize', 12, 'FontName', fontname);
+set(gca, 'XTick', [70, 75, 80, 85, 90]);
+
+grid on;
 
