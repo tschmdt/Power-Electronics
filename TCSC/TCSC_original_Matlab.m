@@ -116,7 +116,7 @@ title('Kondensatorspannung (einphasig)', 'FontSize', 14);
 set(gca, 'FontSize', 12);
 %% I_tcr, I_klemm, I_cap
 
-plot(Icap,'LineWidth', 2.5);
+plot(I_cap,'LineWidth', 2.5);
 xlim([1.5 1.6]);
 hold on;
 plot(I_klemm,'LineWidth', 2.5);
