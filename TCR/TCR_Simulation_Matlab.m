@@ -84,36 +84,36 @@ for i = 1: length(alpha)
     x = ((a + 360) / 360) * (1 / 50);
     subplot(length(alpha), 1, i);
     %plot(t, U_a, t, I_a, 'LineWidth', 2)
-    h1 = plot(t, U_a, 'LineWidth', 2, 'Color', [0.6510    0.6510    0.6510]); 
+    h1 = plot(t, U_a, 'LineWidth', 3.5, 'Color', [0.6510    0.6510    0.6510]); 
     hold on;
-    h2 = plot(t, I_a, 'LineWidth', 2.5, 'Color', [0.8500 0.3250 0.0980]); 
+    h2 = plot(t, I_a, 'LineWidth', 4, 'Color', [0.8500 0.3250 0.0980]); 
 
     ax = gca;
     ax.XAxisLocation = 'origin';
     ax.YAxisLocation = 'origin';
     set(gca,'xtick',[])
     set(gca,'ytick',[])
-    set(gca, 'FontSize', 14);
+    set(gca, 'FontSize', 18);
     ylim(ax, [-320 320]);
     xlim(ax, [0.007 0.08]);
-    xlabel('Zeit (s)', 'FontSize', 14);
-    ylabel('Amplitude U, I', 'FontSize', 14);
-    title(titles{i}, 'FontSize', 14, 'FontWeight', 'bold');
+    xlabel('Zeit (s)', 'FontSize', 18);
+    ylabel('Amplitude U, I', 'FontSize', 18);
+    title(titles{i}, 'FontSize', 21, 'FontWeight', 'bold');
     box on;
 
     Start = [0.01998, 190];
     End = [x, 190];
-    arrow(Start, End, 'Length', 5, 'Width', .5, 'Color', [0.502 0.502 0.502])
+    arrow(Start, End, 'Length', 5, 'Width', .6, 'Color', [0.502 0.502 0.502])
    
-    plot([0.019998 0.019998], [0 220],'--', 'LineWidth', 1, 'Color',[0.502 0.502 0.502]); %fix line
-    plot([x x], [0 220], '--', 'LineWidth', 1, 'Color', [0.502 0.502 0.502]); % variable line
+    plot([0.019998 0.019998], [0 220],'--', 'LineWidth', 1.5, 'Color',[0.502 0.502 0.502]); %fix line
+    plot([x x], [0 220], '--', 'LineWidth', 1.5, 'Color', [0.502 0.502 0.502]); % variable line
 
-    text(0.01998+0.001, 230, ['\alpha = ', num2str(a), '°'], 'FontSize', 12, 'FontWeight', 'bold', 'Color', [0.502 0.502 0.502]);
+    text(0.01998+0.001, 230, ['\alpha = ', num2str(a), '°'], 'FontSize', 18, 'FontWeight', 'bold', 'Color', [0.502 0.502 0.502]);
 
 
    
     if i == 3
-        legend([h1, h2], {'Load Voltage U', 'TCR Current I'}, 'Location', 'best', 'FontSize', 10);
+        legend([h1, h2], {'Load Voltage U', 'TCR Current I'}, 'Location', 'best', 'FontSize', 16);
     end
        
 end

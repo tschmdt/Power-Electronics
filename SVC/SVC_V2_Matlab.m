@@ -71,26 +71,28 @@ for plotIndex = 1:numPlots
     subplot(numPlots, 1, plotIndex); 
 
     if i == 3 
-        plot(time, scopeData.signals(i).values(:,2), 'LineWidth', 1.2, 'Color', [.7 .7 .7], 'LineStyle','--');
+        plot(time, scopeData.signals(i).values(:,2), 'LineWidth', 2.5, 'Color', [.7 .7 .7], 'LineStyle','--');
         hold on
-        plot(time, scopeData.signals(i).values(:,1), 'LineWidth', 1.5);
-        legend(legends{i}, 'Location', 'best', 'FontSize', 10);
+        plot(time, scopeData.signals(i).values(:,1), 'LineWidth', 4);
+        legend(legends{i}, 'Location', 'best', 'FontSize', 16);
     else
-        plot(time, scopeData.signals(i).values, 'LineWidth', 1.5); 
+        if plotIndex == numPlots
+            plot(time, scopeData.signals(i).values, 'LineWidth', 4,'Color', [0.85 0.5 0.1]); 
+            xlabel('Zeit (s)', 'FontSize', 18);
+        else
+            plot(time, scopeData.signals(i).values, 'LineWidth', 4); 
+            set(gca, 'XTickLabel', []);
+        end
     end
    
     title(titles{i}, 'FontSize', 16, 'FontWeight', 'bold');
 
-    ylabel(yLabels{plotIndex}, 'FontSize', 14)
+    ylabel(yLabels{plotIndex}, 'FontSize', 19)
     
-    if plotIndex == numPlots
-        xlabel('Time (s)', 'FontSize', 14);
-    else
-        set(gca, 'XTickLabel', []);
-    end
    
-    set(gca, 'FontSize', 10);
+   
+    set(gca, 'FontSize', 19);
     grid off; 
 end
-sgtitle('SVC Verhalten (dynamische Regelung)', 'FontSize', 17);
+%sgtitle('SVC Verhalten (dynamische Regelung)', 'FontSize', 17);
 

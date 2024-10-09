@@ -64,25 +64,25 @@ title('alpha', 'FontSize', 12, 'FontWeight', 'bold', 'Interpreter', 'tex');
 set(gca, 'FontSize', 12, 'FontName', fontname);
 ylim([65 95]);
 
-%% Power, Z, alpha ONE PLOT
+%% Power, Z ONE PLOT
 fontname = 'Helvetica';
 
 %figure;
 figure('Position', [100, 100, 750, 700]);
 
 yyaxis left
-plot(Ztcsc.Time, Ztcsc.Data, 'LineWidth', 2); 
+plot(Ztcsc.Time, -Ztcsc.Data(:,2), 'LineWidth', 3); 
 ylabel('Ohm');
-set(gca, 'FontSize', 12);
+set(gca, 'FontSize', 19);
 %set(gca, 'XTick', []); 
-xlabel('Zeit (s)'); 
+xlabel('Zeit (s)', 'FontSize', 19); 
 
-title('Wirkleistungsfluss-Änderung durch Impedanz-Regelung', 'FontSize', 16, 'FontWeight', 'bold');
+%title('Wirkleistungsfluss-Änderung durch Impedanz-Regelung', 'FontSize', 21, 'FontWeight', 'bold');
 
 yyaxis right
-plot(P.Time, P.Data, 'LineWidth', 2, 'LineStyle','-.'); 
+plot(P.Time, P.Data, 'LineWidth', 3, 'LineStyle','--'); 
 ylabel('MW');  
-set(gca, 'FontSize', 12, 'FontName', fontname);
+set(gca, 'FontSize', 19, 'FontName', fontname);
 set(gca, 'YTick', [0, 200, 400, 600, 800, 1000]);
 
 
@@ -90,7 +90,118 @@ legend('Z_{TCSC}','P')
 
 x = [0.35 0.27]; 
 y = [0.25 0.3];
-annotation('textarrow', x, y, 'String', ' start regulation to Z_{ref} = 128 \Omega', 'LineWidth', 1.1, 'FontSize', 12);
+annotation('textarrow', x, y, 'String', ' start regulation to Z_{ref} = 128 \Omega', 'LineWidth', 2, 'FontSize', 16);
+
+%% Power, X ONE PLOT
+
+fontname = 'Helvetica';
+
+figure('Position', [100, 100, 750, 700]);
+
+plot(P.Time, P.Data, 'LineWidth', 3, 'LineStyle', '-', 'Color',[0 0.4470 0.7410]);  
+hold on;
+
+plot(Ztcsc.Time, -Ztcsc.Data(:,2), 'LineWidth', 3,'Color',[0.8500 0.3250 0.0980]); 
+%ylabel('Ohm');
+
+xlim([0 2.5]);
+
+x = [0.4 0.3]; 
+y = [0.3 0.25];
+annotation('textarrow', x, y, 'String', ' start regulation', 'LineWidth', 2, 'FontSize', 16);
+
+ax = gca;
+%set(gca, 'YTick', [-400, -200, 0, 200, 400, 600, 800, 1000]);
+set(gca, 'YTickLabel', []);
+
+ax.XAxisLocation = "origin";
+ax.YAxisLocation = "origin";
+ax.LineWidth = 1.5;
+box off;
+
+set(gca, 'FontSize', 19, 'FontName', fontname);
+
+axesPosition = get(gca, 'Position');
+
+annotation('arrow', [axesPosition(1), axesPosition(1)], [axesPosition(2)+axesPosition(4), axesPosition(2)+axesPosition(4)+0.05], 'LineWidth', 1.5);
+
+annotation('arrow', [axesPosition(1), axesPosition(1)], [axesPosition(2), axesPosition(2)-0.05], 'LineWidth', 1.5);
+
+
+% Add manual colored y-tick labels
+yticks = [-200, 0, 200, 400, 600, 800, 1000];  % y-tick values
+ylabels = {'-200', '0', '200', '400', '600', '800', '1000'};  % Corresponding labels
+
+% Define colors for each y-tick label
+colors = {[0.8500 0.3250 0.0980], "black", [0 0.4470 0.7410], [0 0.4470 0.7410], [0 0.4470 0.7410], [0 0.4470 0.7410], [0 0.4470 0.7410]};
+% Loop through each tick position and add colored text
+for i = 1:length(yticks)
+    text(-0.05, yticks(i), ylabels{i}, 'Color', colors{i}, 'FontSize', 19, 'FontName', fontname, 'HorizontalAlignment', 'right');
+end
+
+
+%Add custom labels since y axis merges two axes (X and P)
+
+text(-0.15, 1200, 'P', 'FontSize', 19, 'FontName', fontname, 'Color', [0 0.4470 0.7410], 'FontWeight', 'bold');  % Label for P (above 0)
+text(-0.15, -300, 'X_{TCSC}', 'FontSize', 19, 'FontName', fontname, 'Color', [0.8500 0.3250 0.0980], 'FontWeight', 'bold');  
+%%
+
+fontname = 'Helvetica';
+
+% Create the figure
+figure('Position', [100, 100, 750, 700]);
+
+% Left y-axis for Ztcsc Data
+yyaxis left
+plot(Ztcsc.Time, -Ztcsc.Data(:,2), 'LineWidth', 3); 
+ylabel('Ohm');
+set(gca, 'FontSize', 19);
+xlabel('Zeit (s)', 'FontSize', 19); 
+
+% Right y-axis for P Data
+yyaxis right
+plot(P.Time, P.Data, 'LineWidth', 3, 'LineStyle','--'); 
+ylabel('MW');
+set(gca, 'FontSize', 19, 'FontName', fontname);
+
+% Set y-ticks for the right axis
+set(gca, 'YTick', [0, 200, 400, 600, 800, 1000]);
+
+% Adjust y-limits to align zeros
+% Assuming Ztcsc.Data(:,2) goes negative, set limits for left y-axis
+left_ylim = [0,-140]; % Adjust as needed
+right_ylim = [0,1000)]; % Assuming P.Data is non-negative
+
+% Set the y-limits for both axes
+yyaxis left
+ylim(left_ylim); 
+
+yyaxis right
+ylim(right_ylim);
+
+% Legend
+legend('Z_{TCSC}', 'P', 'Location', 'best');
+
+% Add annotation
+x = [0.35 0.27]; 
+y = [0.25 0.3];
+annotation('textarrow', x, y, 'String', ' start regulation to Z_{ref} = 128 \Omega', 'LineWidth', 2, 'FontSize', 16);
+
+% Optional: Ensure the x-axis limits fit your data
+xlim([min(Ztcsc.Time), -max(Ztcsc.Time)]);
+
+
+%%
+
+
+
+
+
+
+
+
+
+
 
 %% U,I 
     % capacitor voltage and current at steady state operation in the capacitive
@@ -116,19 +227,22 @@ title('Kondensatorspannung (einphasig)', 'FontSize', 14);
 set(gca, 'FontSize', 12);
 %% I_tcr, I_klemm, I_cap
 
-plot(Icap,'LineWidth', 2.5);
+figure('Position', [100, 100, 750, 700]);
+
+plot(I_cap,'LineWidth', 4);
 xlim([1.5 1.6]);
 hold on;
-plot(I_klemm,'LineWidth', 2.5);
+plot(I_klemm,'LineWidth', 4);
 xlim([1.5 1.6]);
-plot(I_tcr,'LineWidth', 2.5);
+plot(I_tcr,'LineWidth', 4);
 xlabel('Zeit (s)');
 yticks([]);
 xticks([]);
 ylabel('I (A)');
-title('Stromverläufe TCSC (einphasig)', 'FontSize', 14);
-set(gca, 'FontSize', 12);
-legend({'I_{cap}', 'I_{klemm}', 'I_{tcr}'}, 'Location', 'best', 'FontSize', 12);
+%title('Stromverläufe TCSC (einphasig)', 'FontSize', 14);
+title([]);
+set(gca, 'FontSize', 18);
+legend({'I_{cap}', 'I_{klemm}', 'I_{tcr}'}, 'Location', 'best', 'FontSize', 16);
 
 
 
@@ -172,7 +286,7 @@ for i = 1:length(indices)
     alpha_timevalues(i) = alpha.Data(indices(i))
 end
 
-figure()
+figure('Position', [100, 100, 600, 600]);
 plot(alpha_timevalues, Ztcsc_timevalues, 'bo', 'MarkerSize', 8, 'MarkerFaceColor', 'b', 'LineWidth', 1, 'LineStyle','-', 'Color', 'black'); 
 title('Abhängigkeit der Impedanz vom (Zünd-) Winkel', 'FontSize', 16, 'FontWeight', 'bold');
 xlabel('$\alpha$', 'Interpreter', 'latex', 'FontSize', 16)
