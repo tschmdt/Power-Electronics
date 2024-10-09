@@ -104,9 +104,9 @@ hold on;
 plot(Ztcsc.Time, -Ztcsc.Data(:,2), 'LineWidth', 3,'Color',[0.8500 0.3250 0.0980]); 
 %ylabel('Ohm');
 
-xlim([0 2.5]);
+xlim([0.2 2.5]);
 
-x = [0.4 0.3]; 
+x = [0.4 0.25]; 
 y = [0.3 0.25];
 annotation('textarrow', x, y, 'String', ' start regulation', 'LineWidth', 2, 'FontSize', 16);
 
@@ -135,14 +135,14 @@ ylabels = {'-200', '0', '200', '400', '600', '800'} ;
 colors = {[0.8500 0.3250 0.0980], "black", [0 0.4470 0.7410], [0 0.4470 0.7410], [0 0.4470 0.7410], [0 0.4470 0.7410]};
 
 for i = 1:length(yticks)
-    text(-0.05, yticks(i), ylabels{i}, 'Color', colors{i}, 'FontSize', 19, 'FontName', fontname, 'HorizontalAlignment', 'right');
+    text(0.15, yticks(i), ylabels{i}, 'Color', colors{i}, 'FontSize', 19, 'FontName', fontname, 'HorizontalAlignment', 'right');
 end
 
 xlabel('Zeit (s)', 'FontSize', 20); 
 
 %Add custom labels since y axis merges two axes (X and P)
-text(-0.4, 950, 'P (MW)', 'FontSize', 20, 'FontName', fontname, 'Color', [0 0.4470 0.7410], 'FontWeight', 'bold');  % Label for P (above 0)
-text(-0.2, -300, 'X_{TCSC} (\Omega) ', 'FontSize', 20, 'FontName', fontname, 'Color', [0.8500 0.3250 0.0980], 'FontWeight', 'bold');  
+text(-0.17, 950, 'P (MW)', 'FontSize', 20, 'FontName', fontname, 'Color', [0 0.4470 0.7410], 'FontWeight', 'bold');  % Label for P (above 0)
+text(-0.11, -300, 'X_{TCSC} (\Omega) ', 'FontSize', 20, 'FontName', fontname, 'Color', [0.8500 0.3250 0.0980], 'FontWeight', 'bold');  
 %%
 
 fontname = 'Helvetica';
